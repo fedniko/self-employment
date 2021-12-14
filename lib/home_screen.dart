@@ -19,6 +19,30 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Главная',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Заказы',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Мои заказы',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -47,13 +71,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
-                children: const [
-                  SizedBox(
-                    height: 40,
-                  )
+                children: [
+                  Center(
+                    child: _widgetOptions.elementAt(_selectedIndex),
+                  ),
                 ],
               ),
             ),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Главная',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.business),
+                label: 'Заказы',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.school),
+                label: 'Мои заказы',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.amber[800],
+            onTap: _onItemTapped,
           ),
         ),
         onWillPop: () {
