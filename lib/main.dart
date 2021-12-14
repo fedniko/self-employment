@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'intro_screen.dart';
+
 class MyBehavior extends ScrollBehavior {
   @override
   Widget buildViewportChrome(
@@ -149,7 +151,12 @@ class MyApp extends StatelessWidget {
                 shape: (RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 )),
-                onPressed: () {}),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    CupertinoPageRoute(builder: (context) => Splash()),
+                  );
+                }),
             const SizedBox(
               height: 60,
             ),
