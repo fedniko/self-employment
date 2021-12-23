@@ -136,7 +136,7 @@ class IntroScreen extends StatelessWidget {
               flex: 4,
               fit: FlexFit.tight,
               child: SvgPicture.asset(
-                "assets/images/loginScreen.svg",
+                "assets/images/pic2.svg",
               ),
             ),
             Flexible(

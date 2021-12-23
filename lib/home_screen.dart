@@ -1,3 +1,4 @@
+import 'package:fedniko_self_employment/grid_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,16 +23,20 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Главная',
-      style: optionStyle,
+  final List<Widget> _widgetOptions = <Widget>[
+    Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        GridLinksWidget(),
+      ],
     ),
-    Text(
+    const Text(
       'Index 1: Заказы',
       style: optionStyle,
     ),
-    Text(
+    const Text(
       'Index 2: Мои заказы',
       style: optionStyle,
     ),
@@ -72,7 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.alphabetic,
                 children: [
-                  Center(
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                     child: _widgetOptions.elementAt(_selectedIndex),
                   ),
                 ],
