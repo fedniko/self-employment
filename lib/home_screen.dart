@@ -1,4 +1,5 @@
 import 'package:fedniko_self_employment/grid_links.dart';
+import 'package:fedniko_self_employment/my_orders.dart';
 import 'package:fedniko_self_employment/order_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -22,8 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  String _page_title = "Главная";
   final List<Widget> _widgetOptions = <Widget>[
     Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -41,15 +41,27 @@ class _HomeScreenState extends State<HomeScreen> {
         OrderListWidget(),
       ],
     ),
-    const Text(
-      'Index 2: Мои заказы',
-      style: optionStyle,
+    Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        MyOrdersWidget(),
+      ],
     ),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+
+      if (index == 0) {
+        _page_title = "Главная";
+      } else if (index == 1) {
+        _page_title = "Заказы";
+      } else if (index == 2) {
+        _page_title = "Мои заказы";
+      }
     });
   }
 
@@ -59,8 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           key: _globalKey,
           appBar: AppBar(
-            title: const Text(
-              "Главная",
+            title: Text(
+              _page_title,
             ),
           ),
           body: RefreshIndicator(
