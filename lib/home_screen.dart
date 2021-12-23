@@ -1,4 +1,5 @@
 import 'package:fedniko_self_employment/grid_links.dart';
+import 'package:fedniko_self_employment/order_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
         GridLinksWidget(),
       ],
     ),
-    const Text(
-      'Index 1: Заказы',
-      style: optionStyle,
+    Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        OrderListWidget(),
+      ],
     ),
     const Text(
       'Index 2: Мои заказы',
